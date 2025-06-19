@@ -13,6 +13,9 @@ export const Header = () => {
             {label}
           </NavLink>
         ))}
+        <NavLink to={"/sign-in"} className="px-2 py-1">
+          Sign in
+        </NavLink>
       </nav>
     </header>
   );
