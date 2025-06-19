@@ -1,1 +1,5 @@
 @import "tailwindcss";
+
+.active {
+  @apply text-indigo-800 font-semibold border-b;
+}
