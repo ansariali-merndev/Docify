@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import bgImage from "../assets/bgAuth.jpg";
 
 export const SignIn = () => {
   return (
