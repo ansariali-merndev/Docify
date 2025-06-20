@@ -1,5 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import { NavItem } from "../lib/Constant";
+import { MobileNav } from "../components/MobileNav";
 
 export const Header = () => {
   return (
@@ -7,7 +8,7 @@ export const Header = () => {
       <Link to="/" className="text-2xl font-extrabold text-blue-600">
         Docify
       </Link>
-      <nav className="flex gap-4">
+      <nav className="hidden md:flex gap-4">
         {NavItem.map(({ label, url }, index) => (
           <NavLink to={url} className="px-2 py-1">
             {label}
@@ -17,6 +18,7 @@ export const Header = () => {
           Sign in
         </NavLink>
       </nav>
+      <MobileNav />
     </header>
   );
 };
