@@ -10,7 +10,7 @@ export const Header = () => {
       </Link>
       <nav className="hidden md:flex gap-4">
         {NavItem.map(({ label, url }, index) => (
-          <NavLink to={url} className="px-2 py-1">
+          <NavLink to={url} key={index} className="px-2 py-1">
             {label}
           </NavLink>
         ))}

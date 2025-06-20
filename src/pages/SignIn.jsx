@@ -1,6 +1,44 @@
 import { Link } from "react-router-dom";
+import { Password } from "../components/Password";
+import { useState } from "react";
 
 export const SignIn = () => {
+  const [loginForm, setLoginForm] = useState({
+    username: "",
+    password: "",
+  });
+
+  const handleUsername = (e) => {
+    setLoginForm((prev) => {
+      return {
+        ...prev,
+        username: e.target.value,
+      };
+    });
+  };
+
+  const handlePassword = (e) => {
+    setLoginForm((prev) => {
+      return {
+        ...prev,
+        password: e.target.value,
+      };
+    });
+  };
+
+  const handleLoginFormSubmit = (e) => {
+    e.preventDefault();
+    console.log(loginForm);
+    setLoginForm({ username: "", password: "" });
+  };
+
+  const passValue = {
+    confirmPass: false,
+    name: "signInPass",
+    setPassword: handlePassword,
+    Password: loginForm.password,
+  };
+
   return (
     <section className="flex flex-col justify-center items-center py-12">
       <div className="py-8 px-14 rounded-2xl border border-gray-300 backdrop-blur-md w-full max-w-md">
@@ -9,7 +47,7 @@ export const SignIn = () => {
           Welcome back! Please enter your credentials to continue.
         </p>
 
-        <form className="space-y-4">
+        <form onSubmit={handleLoginFormSubmit} className="space-y-4">
           <div>
             <label htmlFor="username" className="block font-medium mb-1">
               Username
@@ -19,22 +57,15 @@ export const SignIn = () => {
               id="username"
               name="username"
               placeholder="Enter username"
+              autoComplete="off"
+              required
+              value={loginForm.username}
+              onChange={handleUsername}
               className="w-full px-3 py-2 bg-gray-100 rounded outline-none focus:ring-2 focus:ring-indigo-500"
             />
           </div>
 
-          <div>
-            <label htmlFor="password" className="block font-medium mb-1">
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Enter password"
-              className="w-full px-3 py-2 bg-gray-100 rounded outline-none focus:ring-2 focus:ring-indigo-500"
-            />
-          </div>
+          <Password value={passValue} />
 
           <button
             type="submit"
@@ -44,12 +75,12 @@ export const SignIn = () => {
           </button>
         </form>
       </div>
-      <h2>
-        Don&apos;t have a account{" "}
+      <p>
+        Don&apos;t have an account{" "}
         <Link to={"/sign-up"} className="text-indigo-600">
           Register
         </Link>
-      </h2>
+      </p>
     </section>
   );
 };

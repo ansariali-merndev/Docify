@@ -19,7 +19,7 @@ export const MobileNav = () => {
         }`}
       >
         {NavItem.map((item, index) => (
-          <NavLink onClick={() => setOpenNav(false)} to={item.url}>
+          <NavLink key={index} onClick={() => setOpenNav(false)} to={item.url}>
             {item.label}
           </NavLink>
         ))}
