@@ -76,7 +76,7 @@ export const SignIn = () => {
         </form>
       </div>
       <p>
-        Don&apos;t have an account{" "}
+        Don&apos;t have an account?{" "}
         <Link to={"/sign-up"} className="text-indigo-600">
           Register
         </Link>
