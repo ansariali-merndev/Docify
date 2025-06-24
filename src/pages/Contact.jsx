@@ -3,7 +3,7 @@ import contact from "../assets/contact.webp";
 
 export const Contact = () => {
   return (
-    <section className="flex items-center justify-center gap-8 my-12">
+    <section className="flex flex-col md:flex-row items-center justify-center gap-8 my-12">
       <img src={contact} alt="contact" className="w-84 h-auto" />
       <div className="text-gray-800 space-y-6">
         <h2 className="text-2xl font-bold">Contact Information</h2>

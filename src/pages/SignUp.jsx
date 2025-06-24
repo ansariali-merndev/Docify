@@ -1,8 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Password } from "../components/Password";
 import { useState } from "react";
+import { handleRegister } from "../lib/axios";
+import Swal from "sweetalert2";
 
 export const SignUp = () => {
+  const navigate = useNavigate();
   const [registerForm, setRegisterForm] = useState({
     username: "",
     password: "",
@@ -36,9 +39,39 @@ export const SignUp = () => {
     });
   };
 
-  const handleRegisterSubmit = (e) => {
+  const handleRegisterSubmit = async (e) => {
     e.preventDefault();
-    console.log(registerForm);
+
+    if (registerForm.password.length < 8) {
+      return Swal.fire({
+        title: "Check Credential",
+        text: "Password minimum 8 character",
+        icon: "question",
+      });
+    }
+
+    const checkPass = registerForm.confirmPassword === registerForm.password;
+
+    if (!checkPass) {
+      return Swal.fire({
+        title: "Check Credential",
+        text: "Password does not match",
+        icon: "question",
+      });
+    }
+
+    const res = await handleRegister(registerForm);
+
+    if (!res.success) {
+      return Swal.fire({
+        title: "Check Credential",
+        text: res.message,
+        icon: "question",
+      });
+    } else {
+      navigate("/");
+    }
+
     setRegisterForm({
       username: "",
       password: "",
@@ -79,6 +112,7 @@ export const SignUp = () => {
               name="username"
               autoComplete="off"
               value={registerForm.username}
+              required
               onChange={handleUsername}
               placeholder="Enter username"
               className="w-full px-3 py-2 bg-gray-100 rounded outline-none focus:ring-2 focus:ring-indigo-500"
