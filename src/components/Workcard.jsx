@@ -5,7 +5,10 @@ export const Card = ({ work, iconMap }) => {
         const IconComponent = iconMap[icon];
 
         return (
-          <div className="flex flex-col items-center justify-center border w-full h-60 border-gray-200 hover:border-gray-400">
+          <div
+            key={index}
+            className="flex flex-col items-center justify-center border w-full h-60 border-gray-200 hover:border-gray-400"
+          >
             <span className="text-8xl mb-6">
               <IconComponent />
             </span>
