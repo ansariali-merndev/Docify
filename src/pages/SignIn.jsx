@@ -34,7 +34,7 @@ export const SignIn = () => {
 
   const handleLoginFormSubmit = async (e) => {
     e.preventDefault();
-    console.log(loginForm);
+    // console.log(loginForm);
 
     const res = await handleAuthLogin(loginForm);
     console.log(res);

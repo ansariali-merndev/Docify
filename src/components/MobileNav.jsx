@@ -22,6 +22,7 @@ export const MobileNav = () => {
     setOpenNav(false);
     const res = await handleAuthLogout();
     if (res.success) {
+      setIsAuthorized(false);
       Swal.fire({
         title: "Logout Successfully",
         timer: 2000,
@@ -34,7 +35,6 @@ export const MobileNav = () => {
         showConfirmButton: true,
       });
     }
-    setIsAuthorized(false);
   };
 
   return (
