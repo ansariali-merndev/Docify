@@ -3,9 +3,11 @@ import { Password } from "../components/Password";
 import { useState } from "react";
 import { handleRegister } from "../lib/axios";
 import Swal from "sweetalert2";
+import { useUser } from "../lib/context";
 
 export const SignUp = () => {
   const navigate = useNavigate();
+  const { setIsAuthorized } = useUser();
   const [registerForm, setRegisterForm] = useState({
     username: "",
     password: "",
@@ -70,13 +72,13 @@ export const SignUp = () => {
       });
     } else {
       navigate("/");
+      setIsAuthorized(true);
+      setRegisterForm({
+        username: "",
+        password: "",
+        confirmPassword: "",
+      });
     }
-
-    setRegisterForm({
-      username: "",
-      password: "",
-      confirmPassword: "",
-    });
   };
 
   const passValue = {

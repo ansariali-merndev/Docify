@@ -1,12 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Password } from "../components/Password";
 import { useState } from "react";
+import { handleAuthLogin } from "../lib/axios";
+import { useUser } from "../lib/context";
+import Swal from "sweetalert2";
 
 export const SignIn = () => {
   const [loginForm, setLoginForm] = useState({
     username: "",
     password: "",
   });
+  const { setIsAuthorized } = useUser();
+
+  const navigate = useNavigate();
 
   const handleUsername = (e) => {
     setLoginForm((prev) => {
@@ -26,10 +32,24 @@ export const SignIn = () => {
     });
   };
 
-  const handleLoginFormSubmit = (e) => {
+  const handleLoginFormSubmit = async (e) => {
     e.preventDefault();
     console.log(loginForm);
-    setLoginForm({ username: "", password: "" });
+
+    const res = await handleAuthLogin(loginForm);
+    console.log(res);
+
+    if (res.success) {
+      setLoginForm({ username: "", password: "" });
+      navigate("/");
+      setIsAuthorized(true);
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Username or password is wrong!",
+      });
+    }
   };
 
   const passValue = {

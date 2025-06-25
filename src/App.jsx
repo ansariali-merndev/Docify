@@ -6,6 +6,7 @@ import { About } from "./pages/About";
 import { Contact } from "./pages/Contact";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { UserProvider } from "./lib/context";
 
 function App() {
   const router = createBrowserRouter([
@@ -37,7 +38,11 @@ function App() {
     },
   ]);
 
-  return <RouterProvider router={router}> </RouterProvider>;
+  return (
+    <UserProvider>
+      <RouterProvider router={router}> </RouterProvider>
+    </UserProvider>
+  );
 }
 
 export default App;
