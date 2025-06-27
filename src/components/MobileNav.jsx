@@ -60,7 +60,11 @@ export const MobileNav = () => {
             logout
           </button>
         ) : (
-          <NavLink to={"/sign-in"} className="px-2 py-1">
+          <NavLink
+            onClick={() => setOpenNav(false)}
+            to={"/sign-in"}
+            className="px-2 py-1"
+          >
             Sign in
           </NavLink>
         )}

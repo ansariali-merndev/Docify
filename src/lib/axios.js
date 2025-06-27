@@ -43,3 +43,12 @@ export const handleAuthLogout = async () => {
     handleError(error);
   }
 };
+
+export const handleSummaryFile = async (data) => {
+  try {
+    const res = await ApiInstance.post("/root/summary", data);
+    return res.data;
+  } catch (error) {
+    handleError(error);
+  }
+};
