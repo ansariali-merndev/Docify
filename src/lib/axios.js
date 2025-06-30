@@ -52,3 +52,12 @@ export const handleSummaryFile = async (data) => {
     handleError(error);
   }
 };
+
+export const handleGoogleLoginAxios = async (code) => {
+  try {
+    const res = await ApiInstance.get(`/auth/google?code=${code}`);
+    return res.data;
+  } catch (error) {
+    handleError(error);
+  }
+};
